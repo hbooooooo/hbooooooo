@@ -46,7 +46,13 @@
             margin-bottom: 0.5rem; /* Consistent spacing between outputs */
         }
 
-        /* Blinking Cursor */
+        /* Prompt and Blinking Cursor */
+        .prompt {
+            visibility: hidden; /* Hide the prompt initially */
+            display: flex;
+            align-items: center;
+        }
+
         .cursor {
             display: inline-block;
             width: 10px;
@@ -74,8 +80,8 @@
         <!-- Dynamic Text Output -->
         <div class="dynamic-output"></div>
 
-        <!-- Blinking Cursor -->
-        <div>
+        <!-- Prompt and Blinking Cursor (Initially Hidden) -->
+        <div class="prompt">
             <span>mainframe@void:</span>
             <span class="cursor"></span>
         </div>
@@ -95,16 +101,16 @@
             "Welcome to the 1985 Mainframe Emulator."
         ];
 
-        // Select the dynamic output container and the blinking cursor
+        // Select the dynamic output container and the prompt
         const dynamicOutput = document.querySelector(".dynamic-output");
-        const cursor = document.querySelector(".cursor");
+        const prompt = document.querySelector(".prompt");
 
         function typeLine(text, callback) {
             // Create a new paragraph for each line
             const line = document.createElement("p");
             line.className = "output";
 
-            // Insert the new line before the cursor
+            // Insert the new line into the dynamic output container
             dynamicOutput.appendChild(line);
 
             let i = 0;
@@ -122,6 +128,9 @@
         function typeAllLines(lines, index = 0) {
             if (index < lines.length) {
                 typeLine(lines[index], () => typeAllLines(lines, index + 1));
+            } else {
+                // When all lines are typed, show the prompt
+                prompt.style.visibility = "visible";
             }
         }
 
