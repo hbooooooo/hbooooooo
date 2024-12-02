@@ -19,21 +19,8 @@
     </style>
 </head>
 <body>
-    <h1>Welcome to the Void</h1>
-    <p>There's nothing here for you...</p>
-    <a href="/trap.html" class="trap" onclick="redirect()">Click Me (If You Dare)</a>
-    
-    <script>
-        function redirect() {
-            window.location.href = "/blackhole";
-        }
-
-        // Optionally log visitor details
-        fetch("/log", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ userAgent: navigator.userAgent, url: window.location.href })
-        }).catch(console.error);
-    </script>
+    <h1>Welcome</h1>
+    <p>There's nothing here</p>
+    <a href="/trap.html" class="trap" onclick="redirect()">Admin access</a>
 </body>
 </html>
