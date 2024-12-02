@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mainframe Terminal</title>
+    <style>
+        /* General Styles */
+        body {
+            background-color: black; /* Black background for terminal look */
+            color: #00ff00; /* Bright green text */
+            font-family: 'Courier New', Courier, monospace; /* Monospace font */
+            font-size: 1.5rem; /* Slightly larger text */
+            margin: 0;
+            padding: 20px;
+            overflow: hidden; /* Prevent scrolling */
+            height: 100vh; /* Full screen */
+        }
+
+        /* Terminal Screen */
+        .terminal {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            white-space: pre-wrap; /* Preserve spacing for the "ASCII" look */
+        }
+
+        /* Blinking Cursor */
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.5rem;
+            background-color: #00ff00;
+            margin-left: 5px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        /* ASCII Art or Borders */
+        .ascii-border {
+            margin-bottom: 1rem;
+        }
+
+        .ascii-border p {
+            margin: 0;
+        }
+
+        /* Animation for Text Typing Effect */
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .typewriter {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #00ff00;
+            animation: typing 3s steps(30, end), blink 0.5s step-end infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <!-- ASCII Border -->
+        <div class="ascii-border">
+            <p>****************************************</p>
+            <p>***    WELCOME TO THE MAINFRAME     ***</p>
+            <p>****************************************</p>
+        </div>
+
+        <!-- Typing Effect -->
+        <div>
+            <span class="typewriter">Initializing system...</span>
+        </div>
+        <br>
+
+        <!-- Simulated Output -->
+        <p>USER: ADMIN</p>
+        <p>PASSWORD: ********</p>
+        <p>ACCESS GRANTED</p>
+        <p>Loading programs...</p>
+        <br>
+
+        <!-- Placeholder for Interactive Cursor -->
+        <div>
+            <span>mainframe@void:</span>
+            <span class="cursor"></span>
+        </div>
+    </div>
+
+    <script>
+        // Optional: Add a basic typing animation for text simulation
+        const terminal = document.querySelector(".terminal");
+        const cursor = document.querySelector(".cursor");
+
+        let outputText = [
+            "Connecting to mainframe...",
+            "Initializing memory blocks...",
+            "System online.",
+            "Welcome to the 1985 Mainframe Emulator."
+        ];
+
+        function typeText() {
+            let i = 0;
+
+            function printLine() {
+                if (i < outputText.length) {
+                    let line = document.createElement("p");
+                    line.textContent = outputText[i++];
+                    terminal.insertBefore(line, cursor.parentElement);
+                    setTimeout(printLine, 1500);
+                }
+            }
+
+            printLine();
+        }
+
+        window.onload = typeText;
+    </script>
+</body>
+</html>
