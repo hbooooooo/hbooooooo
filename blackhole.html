@@ -10,7 +10,7 @@
             background-color: black; /* Black background for terminal look */
             color: #00ff00; /* Bright green text */
             font-family: 'Courier New', Courier, monospace; /* Monospace font */
-            font-size: 1.5rem; /* Slightly larger text */
+            font-size: 1.2rem; /* Standard text size */
             margin: 0;
             padding: 20px;
             overflow: hidden; /* Prevent scrolling */
@@ -26,13 +26,14 @@
             justify-content: flex-start;
             align-items: flex-start;
             white-space: pre-wrap; /* Preserve spacing for the "ASCII" look */
+            line-height: 1.2; /* Reduce vertical spacing between lines */
         }
 
         /* Blinking Cursor */
         .cursor {
             display: inline-block;
             width: 10px;
-            height: 1.5rem;
+            height: 1.2rem;
             background-color: #00ff00;
             margin-left: 5px;
             animation: blink 1s infinite;
@@ -45,11 +46,11 @@
 
         /* ASCII Art or Borders */
         .ascii-border {
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem; /* Tighter margin between border and content */
         }
 
         .ascii-border p {
-            margin: 0;
+            margin: 0; /* No extra margin around ASCII lines */
         }
 
         /* Animation for Text Typing Effect */
@@ -80,14 +81,12 @@
         <div>
             <span class="typewriter">Initializing system...</span>
         </div>
-        <br>
 
         <!-- Simulated Output -->
         <p>USER: ADMIN</p>
         <p>PASSWORD: ********</p>
         <p>ACCESS GRANTED</p>
         <p>Loading programs...</p>
-        <br>
 
         <!-- Placeholder for Interactive Cursor -->
         <div>
