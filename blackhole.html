@@ -60,20 +60,6 @@
             0%, 50% { opacity: 1; }
             50%, 100% { opacity: 0; }
         }
-
-        /* Typing Effect */
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        .typewriter {
-            display: inline-block;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 2px solid #00ff00;
-            animation: typing 3s steps(30, end), blink 0.5s step-end infinite;
-        }
     </style>
 </head>
 <body>
@@ -85,12 +71,10 @@
             <p>****************************************</p>
         </div>
 
-        <!-- Typing Effect Placeholder -->
-        <div class="dynamic-output">
-            <!-- This is where the text will be typed -->
-        </div>
+        <!-- Dynamic Text Output -->
+        <div class="dynamic-output"></div>
 
-        <!-- Placeholder for Interactive Cursor -->
+        <!-- Blinking Cursor -->
         <div>
             <span>mainframe@void:</span>
             <span class="cursor"></span>
@@ -111,24 +95,26 @@
             "Welcome to the 1985 Mainframe Emulator."
         ];
 
-        // Select the terminal container
-        const terminal = document.querySelector(".dynamic-output");
+        // Select the dynamic output container and the blinking cursor
+        const dynamicOutput = document.querySelector(".dynamic-output");
         const cursor = document.querySelector(".cursor");
 
         function typeLine(text, callback) {
-            // Create a new line element for each output
+            // Create a new paragraph for each line
             const line = document.createElement("p");
             line.className = "output";
-            terminal.insertBefore(line, cursor.parentElement);
+
+            // Insert the new line before the cursor
+            dynamicOutput.appendChild(line);
 
             let i = 0;
             const interval = setInterval(() => {
-                // Append one character at a time
+                // Type one character at a time
                 line.textContent += text[i];
                 i++;
                 if (i === text.length) {
                     clearInterval(interval);
-                    if (callback) callback(); // Call the next function when done
+                    if (callback) callback(); // Trigger the next line
                 }
             }, 50); // Typing speed in milliseconds
         }
@@ -139,7 +125,7 @@
             }
         }
 
-        // Start typing all lines on page load
+        // Start typing lines sequentially on page load
         window.onload = () => {
             typeAllLines(outputText);
         };
